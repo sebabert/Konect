@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block page_title %}BTI Konekt - {{ candidate.name }}{% endblock %}
+{% block body_title %}Fiche de {{ candidate.name }}{% endblock %}
+
+{% block content %}
+<section class="main-section-element">
+  {% if candidate %}
+  <h2 class="title-middle">{{ candidate.job }}</h2>
+  <div class="content-wrapper content-wrapper--cvdesktop">
+    <div class="content-wrapper-element">
+      <div class="content-wrapper--flex">
+        <div class="">
+          <p class="text"><span class="text--bold">Téléphone : </span>{{ candidate.phone }}</p>
+          <p class="text"><span class="text--bold">Email : </span>{{ candidate.email }}</p>
+          <p class="text"><span class="text--bold">Adresse : </span>{{ candidate.address }}</p>
+        </div>
+        <div>
+          <p class="text"><span class="text--bold">Mobilité : </span>{{ candidate.mobility }}</p>
+          <p class="text"><span class="text--bold">Disponibilité : </span>{{ candidate.availability }}</p>
+          <p class="text"><span class="text--bold">Statut : </span>{{ candidate.status }}</p>
+          <p class="text"><span class="text--bold">Tarif : </span>{{ candidate.price }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="list list--flex">
+      <li class="list-element"><a class="link link-content" href="{% url 'konekt:edit_candidate' candidate_id=candidate.id %}">Modifier</a></li>
+      <li class="list-element"><a class="link link-content" href="{% url 'konekt:delete_candidate' candidate_id=candidate.id %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce candidat ?')">Supprimer</a></li>
+      <li class="list-element"><a class="link link-content" href="{% url 'konekt:add_candidate' %}">Ajouter un nouveau CV</a></li>
+    </ul>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

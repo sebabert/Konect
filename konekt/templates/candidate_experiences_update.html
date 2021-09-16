@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Modification des expériences pour {{ candidate.name }}{% endblock %}
+
+{% block content %}
+<section class="main-section-element">
+  <h2 class="title-middle">Expériences de {{ candidate.name }}</h2>
+  <div class="content-wrapper content-wrapper--cvdesktop">
+    <div class="content-wrapper-element">
+      <form action="" method="post" enctype="multipart/form-data">
+        {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field.errors }}
+          {{ hidden_field }}
+        {% endfor %}
+
+        {% csrf_token %}
+
+        {{ form.management_form }}
+        {{ form.non_form_errors }}
+
+        {% for experience_form in form.forms %}
+        <article>
+          <h2 class="title-small">
+            {% if experience_form.instance.id %}
+              Experience #{{ experience_form.instance.id }}</h2>
+            {% else %}
+              {% if form.forms|length > 1 %}
+                Add another experience
+              {% else %}
+                Add an experience
+              {% endif %}
+            {% endif %}
+          </h2>
+
+          {% for hidden_field in experience_form.hidden_fields %}
+            {{ hidden_field.errors }}
+          {% endfor %}
+          <div class="form-wrapper">
+            {{ experience_form.job_title }}
+            <div class="form-wrapper-element">
+              {{ experience_form.job_location }}
+              {{ experience_form.company_name }}
+            </div>
+            <div class="form-wrapper-element">
+              {{ experience_form.start_date }}
+              {{ experience_form.end_date }}
+            </div>
+            {{ experience_form.description }}
+          </div>
+          {% if experience_form.nested %}
+            <div class="indent">
+
+              {{ experience_form.nested.management_form }}
+              {{ experience_form.nested.non_form_errors }}
+
+              <table>
+                {% for tool_form in experience_form.nested.forms %}
+
+                  <tr>
+                    <td>
+                      <em>
+                        {% if tool_form.instance.id %}
+                          Tool #{{ tool_form.instance.id }}
+                        {% else %}
+                          Add a tool
+                        {% endif %}
+                      </em>
+                    </td>
+                    <td>
+                      {% for hidden_field in tool_form.hidden_fields %}
+                        {{ hidden_field.errors }}
+                      {% endfor %}
+
+                      <table>
+                        {{ tool_form.as_table }}
+                      </table>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endif %}
+        </article>
+        {% endfor %}
+
+        <hr>
+
+        <p>
+          <input type="submit" value="Update experiences">
+          &nbsp; &nbsp;
+          <a href="{{ candidate.get_absolute_url  }}">Cancel</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock content %}

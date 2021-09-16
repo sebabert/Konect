@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block page_title %}BTI Konekt - Accueil {% endblock %}
+{% block body_title %}BTI Konekt - {{ title }}{% endblock %}
+
+{% block content %}
+<section class="main-section-element">
+  <h1 class="title-middle">Veuillez renseigner le(s) critère(s) suivant(s)</h1>
+  <p class="text">La recherche se fera sur Elasticsearch / TurnoverIT</p>
+  <form class="form">
+    <div class="form-wrapper">
+      <div class="form-group">
+        <label class="form-label form-label--hide" for="{{ form.job.auto_id }}">{{ form.job.label }}</label>
+        {{ form.job }}
+      </div>
+      <div class="form-wrapper-element">
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.availability.auto_id }}">{{ form.availability.label }}</label>
+          {{ form.availability }}
+        </div>
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.price.auto_id }}">{{ form.price.label }}</label>
+          {{ form.price }}
+        </div>
+      </div>
+      <div class="form-wrapper-element">
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.mobility.auto_id }}">{{ form.mobility.label }}</label>
+          {{ form.mobility }}
+        </div>
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.status.auto_id }}">{{ form.status.label }}</label>
+          {{ form.status }}
+        </div>
+      </div>
+      <div class="form-wrapper-element">
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.experience.auto_id }}">{{ form.experience.label }}</label>
+          {{ form.experience }}
+        </div>
+        <div class="form-group">
+          <label class="form-label form-label--hide" for="{{ form.skills.auto_id }}">{{ form.skills.label }}</label>
+          {{ form.skills }}
+        </div>
+      </div>
+      <div>
+        <button class="button" type="submit">{{ button }}</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="main-section-element">
+  {% if results %}
+    <h1 class="title-huge">Résultat de la recherche :</h1>
+    <ul class="list">
+    {% for mytuple in results %}
+      <li class="list-element list-element--margin">
+        <p class="text text--margin-bottom">Poste : <strong class="text--bold">{{ mytuple.0 }}</strong></p>
+        <p class="text text--margin-bottom">{{ mytuple.1 }}, {{ mytuple.2 }}, {{ mytuple.3 }}, {{ mytuple.4 }}</p>
+        <p class="text text--margin-bottom">Compétences : <em class="text--addash">{{ mytuple.5 }}</em></p>
+        <ul class="list list--flex">
+          <li class="list-element"><a class="link link-content link-content--highlight" href="/download/?source=es&format=bti&id={{ mytuple.6 }}">Format BTI</a></li>
+          <li class="list-element"><a class="link link-content link-content--highlight" href="/download/?source=es&format=yellow&id={{ mytuple.6 }}">Format Yellow</a></li>
+          <li class="list-element"><a class="link link-content link-content--highlight" href="{{ mytuple.7 }}">CV Original</a></li>
+        </ul>
+      </li>
+    {% endfor %}
+    </ul>
+  {% elif not search_term %}
+
+  {% elif not results %}
+
+    <p class="text">Pas de résultat</p>
+  {% endif %}
+</section>
+
+{% endblock %}
+

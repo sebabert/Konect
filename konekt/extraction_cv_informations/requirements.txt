@@ -1,0 +1,5 @@
+tika==1.25
+spacy==3.0.5
+pdfimages==0.68.0
+pytesseract==0.3.7
+tesseract==5.0.0

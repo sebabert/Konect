@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block page_title %}BTI Konekt - Ajouter un&middot;e candidat&middot;e{% endblock %}
+
+{% block body_title %}BTI Konekt - {{ title }}{% endblock %}
+
+{% block content %}
+<section class="main-section-element">
+  {% if edit %}
+  <form method="post" action="{% url action_form candidate_id=candidate_id %}">
+  {% else %}
+  <h2 class="title-middle">Importez un cv au format pdf/doc</h2>
+
+  <form class="form" method="post" enctype="multipart/form-data" action="{% url action_form %}">
+    <div class="form-wrapper-element">
+      <div class="form-group form-group--file-input">
+        <div>
+        {% csrf_token %}
+          {% for f in cv_form %}
+            <label class="form-label form-label--show" for="{{ f.auto_id }}">{{ f.label }} {% if f.field.required %} * {% endif %}</label>
+            {{ f }}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <button class="button" type="submit">Envoyer</button>
+  </form>
+
+  <h2 class="title-middle">Ou remplissez le formulaire </h2>
+  <form method="post" action="{% url action_form %}">
+  {% endif %}
+    {% csrf_token %}
+    <article class="article-wrapper">
+      <h2 class="title-small">Coordonnées</h2>
+      {% for f in can_form %}
+        {% if forloop.counter|divisibleby:2 %}
+            <div class="form-group">
+              <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+              {{ f }}
+              {{ f.errors }}
+            </div>
+          </div>
+        {% else %}
+          {% if forloop.last %}
+            <div class="form-wrapper-element">
+              <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+              {{ f }}
+              {{ f.errors }}
+            </div>
+          {% else %}
+          <div class="form-wrapper-element">
+            <div class="form-group">
+              <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+              {{ f }}
+              {{ f.errors }}
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </article>
+
+    <article id="educations-form" class="article-wrapper">
+      <h2 class="title-small">Formations / Education</h2>
+      {% for f in edu_formset.management_form %}
+        {{ f }}
+      {% endfor %}
+      {% for edu_form in edu_formset %}
+      <div class="education-form article-wrapper-element">
+        <div class="form-wrapper">
+          {% for f in edu_form %}
+            {% if "DELETE" in f.auto_id %}
+              <div class="container">
+                <label class="form-label" for="{{ f.auto_id }}">{{ f.label }}</label>
+                {{ f }}
+                {{ f.errors }}
+                <span class="checkmark"></span>
+              </div></div>
+            {% elif forloop.counter|divisibleby:2 %}
+                <div class="form-group">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+                  {{ f }}
+                  {{ f.errors }}
+                </div>
+              </div>
+            {% else %}
+              {% if forloop.last %}
+                <div class="form-wrapper-element">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+                  {{ f }}
+                  {{ f.errors }}
+                </div>
+              {% else %}
+              <div class="form-wrapper-element">
+                <div class="form-group">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+                  {{ f }}
+                  {{ f.errors }}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        <!--<button class="button button-delete delete-education-form-btn">Delete</button>-->
+      </div>
+      {% endfor %}
+      <button id="add-education-form-btn" class="button">Ajouter une formation/diplôme</button>
+    </article>
+
+    <article id="experiences-form" class="article-wrapper">
+      <h2 class="title-small">Expériences</h2>
+      {% for f in exp_formset.management_form %}
+        {{ f }}
+      {% endfor %}
+      {% for exp_form in exp_formset %}
+      <div class="experience-form article-wrapper-element">
+        <div class="form-wrapper">
+          {% for f in exp_form %}
+            {% if "DELETE" in f.auto_id %}
+              <div class="container">
+                <label class="form-label" for="{{ f.auto_id }}">{{ f.label }}</label>
+                {{ f }}
+                {{ f.errors }}
+                <span class="checkmark"></span>
+              </div></div>
+            {% elif forloop.counter == 5 or forloop.counter == 6 or forloop.last %}
+                <div class="form-group">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}{% if f.field.required %} * {% endif %}</label>
+                  {{ f }}
+                  {{ f.errors }}
+                </div>
+            {% elif forloop.counter|divisibleby:2 %}
+                <div class="form-group form-input-element--half ">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}{% if f.field.required %} * {% endif %}</label>
+                  {{ f }}
+                  {{ f.errors }}
+               </div>
+              </div>
+            {% else %}
+              <div class="form-wrapper-element">
+                <div class="form-group">
+                  <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}{% if f.field.required %} * {% endif %}</label>
+                  {{ f }}
+                  {{ f.errors }}
+                </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <!--<button class="button button-delete delete-experience-form-btn">Delete</button>-->
+      </div>
+      {% endfor %}
+      <button id="add-experience-form-btn" class="button">Ajouter une expérience</button>
+    </article>
+
+    <article id="skills-form">
+      <h2 class="title-small">Compétences</h2>
+      {% for f in skills_formset.management_form %}
+        {{ f }}
+      {% endfor %}
+      {% for skills_form in skills_formset %}
+      <div class="skill-form article-wrapper-element">
+        <div class="form-wrapper">
+          {% for f in skills_form %}
+            {% if "DELETE" in f.auto_id %}
+              <div class="container">
+                <label class="form-label" for="{{ f.auto_id }}">{{ f.label }}</label>
+                {{ f }}
+                {{ f.errors }}
+                <span class="checkmark"></span>
+              </div>
+            {% else %}
+              <div class="form-group">
+                <label class="form-label form-label--hide" for="{{ f.auto_id }}">{{ f.label }}</label>
+                {{ f }}
+                {{ f.errors }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <!--<button class="button button-delete delete-skill-form-btn">Delete</button>-->
+      </div>
+      {% endfor %}
+      <button id="add-skill-form-btn" class="button">Ajouter une compétence</button>
+    </article>
+    <input class="button" type="submit" value="{{ button }}" />
+  </form>
+</section>
+{% endblock %}

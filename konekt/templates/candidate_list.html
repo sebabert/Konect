@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block page_title %}Candidat&middot;e&middot;s{% endblock %}
+
+{% block body_title %}Voici tout&middot;e&middot;s les candidat&middot;e&middot;s :{% endblock %}
+
+{% block content %}
+
+<section class="main-section-element">
+  <ul class="list list--column">
+  {% if candidate_list %}
+    {% for candidate in candidate_list %}
+      <li class="list-element">
+        <a class="link link-content" href="{{ candidate.get_absolute_url }}">{{ candidate.name }} - {{ candidate.job }}</a>
+      </li>
+    {% endfor %}
+
+  {% else %}
+
+    <li class="list-element">Il n'y a pas de candidat&middot;e à afficher</li>
+
+  {% endif %}
+
+    <li class="list-element"><a class="link link-content" href="{% url 'konekt:add_candidate' %}">Ajouter un&middot;e candidat&middot;e</a></li>
+  </ul>
+</section>
+{% endblock content %}

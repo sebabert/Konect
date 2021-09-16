@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.io' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <script>
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "https://bti-konekt-bot.azurewebsites.net/api/messages/tokens", true);
+      xhr.setRequestHeader('Authorization', 'BotConnector ' + 'IY_G1sii4hs.ChPYoKcCOBtlu9jtvi0FB4vzIH_1BnLkgh4-QCWM_LQ');
+      xhr.send();
+      xhr.onreadystatechange = processRequest;
+
+      function processRequest(e) {
+        if (xhr.readyState == 4  && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          document.getElementById("chat").src="https://bti-konekt-bot.azurewebsites.net/embed/bti-konekt?t="+response
+        }
+      }
+
+    </script>
+  </head>
+
+  <body class="body">
+    <div class="layout">
+      <header class="header">
+        <div class="header-wrapper">
+          <a href="/">
+            <div class="header-brand">
+              <img class="header-logo" title="BTI-Advisory" src="{% static 'img/logo_bti_orange.png' %}" alt="logo BTI-Advisory">
+            </div>
+          </a>
+          <nav class="header-nav">
+            <ul class="list list-header">
+              <li class="list-element list-element-header">
+                <a href="/" class="link link--nav">Accueil</a>
+              </li>
+              <li class="list-element list-element-header">
+                <a href="/add_candidate/" class="link link--nav">Ajouter un&middot;e candidat&middot;e</a>
+              </li>
+              <li class="list-element list-element-header">
+                <a href="/candidates/" class="link link--nav">Candidat&middot;e&middot;s</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="main-section">
+          <h1 class="title-huge">{% block body_title %}{% endblock %}</h1>
+
+          {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          {% block content %}{% endblock %}
+        </section>
+
+        <!--<section class="main-section main-section--bot">
+          <div>
+            <iframe src='https://webchat.botframework.com/embed/bti-konekt-bot?s=IY_G1sii4hs.ChPYoKcCOBtlu9jtvi0FB4vzIH_1BnLkgh4-QCWM_LQ' class="chatbot"></iframe>
+          </div>
+        </section>-->
+      </main>
+
+      <footer>
+
+      </footer>
+    </div>
+    <script src="{% static 'js/main.js' %}" async></script>
+  </body>
+
+</html>

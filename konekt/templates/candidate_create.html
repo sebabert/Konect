@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block page_title %}BTI Konekt - Ajouter un candidat{% endblock %}
+
+{% block content %}
+<section class="main-section-element">
+  <form action="" method="post">
+
+    {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+    {% endfor %}
+
+    {% csrf_token %}
+
+    {{ form.non_form_errors }}
+
+    <div class="form-wrapper">
+      {{ form.name }}
+      {{ form.job }}
+      {{ form.address }}
+      <div class="form-wrapper-element">
+        {{ form.phone }}
+        {{ form.email }}
+      </div>
+      <div class="form-wrapper-element">
+        {{ form.status }}
+        {{ form.availability }}
+      </div>
+      <div class="form-wrapper-element">
+        {{ form.mobility }}
+        {{ form.price }}
+      </div>
+    </div>
+    <button class="button" type="submit">Ajouter un candidat</button>
+  </form>
+</section>
+{% endblock content %}
