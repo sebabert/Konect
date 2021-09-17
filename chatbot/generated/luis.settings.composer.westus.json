@@ -1,0 +1,12 @@
+{
+    "luis": {
+        "bti_konekt_chatbot_update_v7_fr_fr_lu": {
+            "appId": "c4df7ff7-903a-4383-a81c-abfd303f7b98",
+            "version": "0.1"
+        },
+        "bti_konekt_chatbot_update_v7_en_us_lu": {
+            "appId": "7856fede-6e1d-40f9-81d5-133d863d113d",
+            "version": "0.1"
+        }
+    }
+}

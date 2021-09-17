@@ -1,0 +1,129 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "yp5Spg",
+    "name": "Menu",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "j1zFDk"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.ChoiceInput",
+          "$designer": {
+            "id": "OpxXqZ"
+          },
+          "defaultLocale": "fr-fr",
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "property": "dialog.menu",
+          "choiceOptions": {
+            "includeNumbers": true,
+            "inlineOrMore": ", or ",
+            "inlineOr": " or ",
+            "inlineSeparator": ", "
+          },
+          "choices": [
+            {
+              "value": "Rechercher un candidat"
+            },
+            {
+              "value": "Afficher les candidats"
+            },
+            {
+              "value": "Afficher la requète"
+            }
+          ],
+          "recognizerOptions": {
+            "recognizeOrdinals": true,
+            "recognizeNumbers": true
+          },
+          "prompt": "${ChoiceInput_Prompt_OpxXqZ()}",
+          "style": "heroCard"
+        },
+        {
+          "$kind": "Microsoft.SwitchCondition",
+          "$designer": {
+            "id": "OtRwX5"
+          },
+          "cases": [
+            {
+              "value": "Afficher la requète",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "O4SIES"
+                  },
+                  "activityProcessed": false,
+                  "dialog": "show_action"
+                }
+              ]
+            },
+            {
+              "value": "Afficher les candidats",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "eZ0uTR"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "Call_Api_Elastik"
+                }
+              ]
+            },
+            {
+              "value": "Rechercher un candidat",
+              "actions": [
+                {
+                  "$kind": "Microsoft.BeginDialog",
+                  "$designer": {
+                    "id": "IMIiZV"
+                  },
+                  "activityProcessed": true,
+                  "dialog": "search_profil"
+                }
+              ]
+            }
+          ],
+          "default": [],
+          "condition": "dialog.menu"
+        },
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "r0NoZ8"
+          },
+          "activityProcessed": true,
+          "dialog": "bti-konekt-chatbot-update_v6"
+        },
+        {
+          "$kind": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "QMfwHQ"
+          },
+          "activityProcessed": true
+        }
+      ]
+    }
+  ],
+  "generator": "Menu.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "Menu"
+}

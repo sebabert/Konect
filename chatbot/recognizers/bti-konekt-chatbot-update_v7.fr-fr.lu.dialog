@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.LuisRecognizer",
+  "id": "LUIS_bti-konekt-chatbot-update_v7",
+  "applicationId": "=settings.luis.bti_konekt_chatbot_update_v7_fr_fr_lu.appId",
+  "version": "=settings.luis.bti_konekt_chatbot_update_v7_fr_fr_lu.version",
+  "endpoint": "=settings.luis.endpoint",
+  "endpointKey": "=settings.luis.endpointKey"
+}

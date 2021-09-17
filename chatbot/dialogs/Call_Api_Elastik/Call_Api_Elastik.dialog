@@ -1,0 +1,56 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "ZWb7xL",
+    "name": "Call_Api_Elastik",
+    "description": "Envoie une requète GET sur Bti_Konekt / ES"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "61RWZU"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "xXAAoc"
+          },
+          "activity": "${SendActivity_xXAAoc()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7kYEvC"
+          },
+          "activity": "${SendActivity_7kYEvC()}"
+        },
+        {
+          "$kind": "Microsoft.ReplaceDialog",
+          "$designer": {
+            "id": "hRfPAd"
+          },
+          "activityProcessed": true,
+          "dialog": "Menu"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "56qxsy"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "Call_Api_Elastik.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "Call_Api_Elastik"
+}

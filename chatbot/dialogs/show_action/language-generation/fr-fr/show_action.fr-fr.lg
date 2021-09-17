@@ -1,0 +1,19 @@
+[import](common.lg)
+
+# SendActivity_mDAQVx()
+ - ```  -->
+		Format:	${user.candidate.itemFormat}
+		Db:		${user.candidate.itemBD}
+		Mobilit:${user.candidate.itemLocation}
+		Rem: 	${user.candidate.itemRem}
+		Statut: ${user.candidate.itemStatut}
+		Dispo:	${user.candidate.itemDispo}
+		Level	${user.candidate.itemLevel}
+		Exp:	${user.candidate.itemExp}
+		Asap:	${user.candidate.itemAsap}
+		Job:	${user.candidate.itemJob}
+		Skills:	${user.candidate.itemSkills}
+
+ ```
+# SendActivity_JfXHuq()
+- Objets Candidat:

@@ -1,0 +1,6 @@
+[import](common.lg)
+
+# SendActivity_xXAAoc()
+-Je recherche les meilleurs profiles depuis la base de donnée ElastikSearch ...
+# SendActivity_7kYEvC()
+-<URL>/?job=${user.candidate.itemJob}&availability=${user.candidate.itemDispo}&price=${user.candidate.itemRem}&mobility=${user.candidate.itemLocation}&status=${user.candidate.itemStatut}&experience=${user.candidate.itemExp}&skills=${user.candidate.itemSkills}

@@ -1,0 +1,18 @@
+{
+  "bti-konekt-chatbot-update_v7.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "show_entities": [
+        "show_action.en-us"
+      ]
+    }
+  },
+  "bti-konekt-chatbot-update_v7.fr-fr": {
+    "rootDialog": true,
+    "triggers": {
+      "show_entities": [
+        "show_action.fr-fr"
+      ]
+    }
+  }
+}

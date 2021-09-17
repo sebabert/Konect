@@ -1,0 +1,55 @@
+
+> LUIS application information
+> !# @app.versionId = 0.1
+> !# @app.culture = en-us
+> !# @app.luis_schema_version = 3.2.0
+
+
+> # Intent definitions
+
+# search_action
+- i want to search a candidat
+- search
+- search me
+- give
+- give me
+- look for
+- list
+- pull in
+- seach for
+- chech for
+- want
+
+
+# print_elastik
+- print result
+- print
+- print out
+- impress
+- result
+- output
+- effect
+
+
+# show_entities
+- show
+- look at me
+- show me
+- explain
+- display
+
+
+> # Entity definitions
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+

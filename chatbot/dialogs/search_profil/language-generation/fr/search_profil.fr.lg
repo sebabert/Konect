@@ -1,0 +1,44 @@
+[import](common.lg)
+
+# SendActivity_QjtrTL()
+- The request was unsuccessful !
+# SendActivity_ESBbZT()
+- Cancel Research !
+# SendActivity_yNxlGh()
+-Let's continue your research
+# SendActivity_COHVBj()
+-Error code : ${dialog.response_api.statusCode}
+# SendActivity_6EjCby()
+- Search LUIS activated !
+# SendActivity_b65iFA()
+- >> ${user.answer}
+# SendActivity_jJ8EPQ()
+- ${dialog.response_api}
+# SendActivity_HqYdjX()
+- Loop: ${dialog.response_api.content.prediction.entities.$instance.itemJob}
+# SendActivity_eixioK()
+- dialog.foreach.value :: ${dialog.foreach.value.text}
+# SendActivity_dQ4TcV()
+- user.candidate.itemSkills :: ${user.candidate.itemSkills}
+# SendActivity_8YmxOr()
+- user.candidate.itemJob :: ${user.candidate.itemJob}
+# SendActivity_uADMqc()
+- Success :: ${dialog.response_api.statusCode}
+# SendActivity_qeb9Vo()
+- itemSkills Null
+# SendActivity_oymeTz()
+- itemSkills Full
+# SendActivity_13Lsgf()
+- your search has just been saved !
+# SendActivity_pFp9gq()
+- Canceled !
+# TextInput_Prompt_jiTNCm()
+- ``` 
+    What profile do you looking for ? \n 
+
+    Sample: 
+    give me an experimented freelance 
+    devops works with azure python google ruby aws 
+    living in Lacanau
+
+ ```

@@ -1,0 +1,44 @@
+[import](common.lg)
+
+# SendActivity_QjtrTL()
+-La requête n'a pas aboutie !
+# SendActivity_ESBbZT()
+- Annulation de la recherche !
+# SendActivity_yNxlGh()
+-Continuons votre recherche
+# SendActivity_COHVBj()
+- Code erreur : ${dialog.response_api.statusCode}
+# SendActivity_6EjCby()
+- Recherche LUIS activée !
+# SendActivity_b65iFA()
+- >> ${user.answer}
+# SendActivity_jJ8EPQ()
+- ${dialog.response_api}
+# SendActivity_HqYdjX()
+- Loop: ${dialog.response_api.content.prediction.entities.$instance.itemJob}
+# SendActivity_eixioK()
+- dialog.foreach.value :: ${dialog.foreach.value.text}
+# SendActivity_dQ4TcV()
+- user.candidate.itemSkills :: ${user.candidate.itemSkills}
+# SendActivity_8YmxOr()
+- user.candidate.itemJob :: ${user.candidate.itemJob}
+# SendActivity_uADMqc()
+- Success :: ${dialog.response_api.statusCode}
+# SendActivity_qeb9Vo()
+- itemSkills Null
+# SendActivity_oymeTz()
+- itemSkills Full
+# SendActivity_13Lsgf()
+- Votre recherche a été sauvegardée !
+# SendActivity_pFp9gq()
+- Annulé!
+# TextInput_Prompt_jiTNCm()
+- ``` 
+    Quel profile recherchez vous ? \n 
+
+    Exemple: 
+  
+    Trouve 1 expert devops freelance qui maitrise python aws azure libre le juin mobile au texas pour 500 euros tjm avec 10 ans d'expérience depuis la base externe pour une assistance technique
+
+
+ ```

@@ -1,0 +1,6 @@
+{
+  "$kind": "Microsoft.CrossTrainedRecognizerSet",
+  "recognizers": [
+    "bti-konekt-chatbot-update_v7.lu"
+  ]
+}

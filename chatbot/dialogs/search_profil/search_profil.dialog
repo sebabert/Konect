@@ -1,0 +1,431 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "VXxsie",
+    "name": "search_action",
+    "description": ""
+  },
+  "autoEndDialog": false,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "jSnVH4"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "6EjCby"
+          },
+          "activity": "${SendActivity_6EjCby()}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "DBgtgx"
+          },
+          "property": "user.answer",
+          "value": "=\"\""
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "5rpl3s",
+            "name": "Set properties :: All Item LUIS.AI"
+          },
+          "assignments": [
+            {
+              "value": "=\"\"",
+              "property": "user.candidate.itemLocation"
+            },
+            {
+              "property": "user.candidate.itemBD",
+              "value": "=\"\""
+            },
+            {
+              "value": "=\"\"",
+              "property": "user.candidate.itemDispo"
+            },
+            {
+              "value": "=\"\"",
+              "property": "user.candidate.itemLevel"
+            },
+            {
+              "property": "user.candidate.itemExp",
+              "value": "=\"\""
+            },
+            {
+              "value": "=\"\"",
+              "property": "user.candidate.itemFormat"
+            },
+            {
+              "value": "=\"\"",
+              "property": "user.candidate.itemRem"
+            },
+            {
+              "property": "user.candidate.itemStatut",
+              "value": "=\"\""
+            },
+            {
+              "property": "user.candidate.itemAsap",
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemAsap[0][0],null)"
+            },
+            {
+              "property": "user.candidate.itemJob",
+              "value": "=\"\""
+            },
+            {
+              "property": "user.candidate.itemSkills",
+              "value": "=\"\""
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "jiTNCm"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "prompt": "${TextInput_Prompt_jiTNCm()}",
+          "property": "user.answer"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "b65iFA"
+          },
+          "activity": "${SendActivity_b65iFA()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "hOaH5v",
+            "name": "Send an HTTP request :: LUIS.AI"
+          },
+          "method": "GET",
+          "url": "https://westus.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/0206dcfb-5172-4852-b508-ebbe8c56bef8/slots/staging/predict?subscription-key=f20481c462714c01859f9dd1ebc53a5b&verbose=true&show-all-intents=true&log=true&query=${user.answer}",
+          "responseType": "json",
+          "resultProperty": "dialog.response_api"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "jJ8EPQ"
+          },
+          "activity": "${SendActivity_jJ8EPQ()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "CBW6OC",
+            "name": "Set properties :: All Item LUIS.AI"
+          },
+          "assignments": [
+            {
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemLocation[0],dialog.response_api.content.prediction.entities.geographyV2[0].value,null)",
+              "property": "user.candidate.itemLocation"
+            },
+            {
+              "property": "user.candidate.itemBD",
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemBD[0][0],null)"
+            },
+            {
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemDispo[0],null)",
+              "property": "user.candidate.itemDispo"
+            },
+            {
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.listExp[0][0],null)",
+              "property": "user.candidate.itemLevel"
+            },
+            {
+              "property": "user.candidate.itemExp",
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemExp[0],null)"
+            },
+            {
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemFormat[0][0],null)",
+              "property": "user.candidate.itemFormat"
+            },
+            {
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemRem[0],null)",
+              "property": "user.candidate.itemRem"
+            },
+            {
+              "property": "user.candidate.itemStatut",
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemStatut[0][0],null)"
+            },
+            {
+              "property": "user.candidate.itemAsap",
+              "value": "=coalesce(dialog.response_api.content.prediction.entities.itemAsap[0][0],null)"
+            },
+            {
+              "property": "user.candidate.itemJob",
+              "value": "=\"\""
+            },
+            {
+              "property": "user.candidate.itemSkills",
+              "value": "=\"\""
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "2t1oWX",
+            "name": "Branch: If/Else ITEM ASAP > fr"
+          },
+          "condition": "user.candidate.itemAsap=='Asap'",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "U8YS8D"
+              },
+              "property": "user.candidate.itemAsap",
+              "value": "='Immédiate'"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "HqYdjX"
+          },
+          "activity": "${SendActivity_HqYdjX()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "b6qYUQ",
+            "name": "Loop: For each item :: ITEM JOB"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.response_api.content.prediction.entities.$instance.itemJob",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "eixioK"
+              },
+              "activity": "${SendActivity_eixioK()}",
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "mwanuo",
+                "name": "Set a property :: concat"
+              },
+              "property": "user.candidate.itemJob",
+              "value": "=concat(user.candidate.itemJob,dialog.foreach.value.text,'+')"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "8YmxOr"
+          },
+          "activity": "${SendActivity_8YmxOr()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "1LdGnX"
+          },
+          "condition": "dialog.response_api.content.prediction.entities.$instance.itemSkills == null",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "qeb9Vo"
+              },
+              "activity": "${SendActivity_qeb9Vo()}",
+              "disabled": true
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "oymeTz"
+              },
+              "activity": "${SendActivity_oymeTz()}",
+              "disabled": true
+            }
+          ],
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "zyhYQJ",
+            "name": "Loop: For each item :: ITEM SKILL"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.response_api.content.prediction.entities.$instance.itemSkills",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "BVMcyl",
+                "name": "Set a property :: concat"
+              },
+              "property": "user.candidate.itemSkills",
+              "value": "=concat(user.candidate.itemSkills,dialog.foreach.value.text,'+')"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "dQ4TcV"
+          },
+          "activity": "${SendActivity_dQ4TcV()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "tqR1b8",
+            "name": "Loop: For each item :: LIST SKILLS"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.response_api.content.prediction.entities.$instance.listSkill",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "yOgHI8",
+                "name": "Set a property :: concat"
+              },
+              "property": "user.candidate.itemSkills",
+              "value": "=concat(user.candidate.itemSkills,dialog.foreach.value.text,'+')"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "dnrNFA",
+            "name": "Set a property :: ITEM DISPO"
+          },
+          "property": "user.candidate.itemDispo",
+          "value": "=concat(user.candidate.itemDispo,'+',user.candidate.itemAsap)"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "5HsEEz"
+          },
+          "condition": "dialog.response_api.statusCode==200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "uADMqc"
+              },
+              "activity": "${SendActivity_uADMqc()}",
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "13Lsgf"
+              },
+              "activity": "${SendActivity_13Lsgf()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "QjtrTL"
+              },
+              "activity": "${SendActivity_QjtrTL()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "COHVBj"
+              },
+              "activity": "${SendActivity_COHVBj()}"
+            },
+            {
+              "$kind": "Microsoft.EndDialog",
+              "$designer": {
+                "id": "CmMBxD"
+              }
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.ReplaceDialog",
+          "$designer": {
+            "id": "lcY9yI"
+          },
+          "activityProcessed": true,
+          "dialog": "Menu"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "Oj8IF8"
+          }
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "qksU9I",
+        "name": "Cancel"
+      },
+      "intent": "Cancel",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "pFp9gq"
+          },
+          "activity": "${SendActivity_pFp9gq()}"
+        },
+        {
+          "$kind": "Microsoft.ReplaceDialog",
+          "$designer": {
+            "id": "n554Ps"
+          },
+          "activityProcessed": true,
+          "dialog": "Menu"
+        }
+      ]
+    }
+  ],
+  "generator": "search_profil.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "Cancel",
+        "pattern": "cancel"
+      }
+    ]
+  },
+  "id": "search_action"
+}

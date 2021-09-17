@@ -1,0 +1,53 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "HJHZIA",
+    "name": "show_action",
+    "description": "Affiche à l'utilisateur les données de recherche enregistrées "
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "Show",
+        "description": "",
+        "id": "obgnbX"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "JfXHuq"
+          },
+          "activity": "${SendActivity_JfXHuq()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "mDAQVx"
+          },
+          "activity": "${SendActivity_mDAQVx()}"
+        },
+        {
+          "$kind": "Microsoft.ReplaceDialog",
+          "$designer": {
+            "id": "mhU1Iu"
+          },
+          "activityProcessed": true,
+          "dialog": "Menu"
+        },
+        {
+          "$kind": "Microsoft.EndDialog",
+          "$designer": {
+            "id": "fMCtti"
+          }
+        }
+      ]
+    }
+  ],
+  "generator": "show_action.lg",
+  "recognizer": "show_action.lu.qna",
+  "id": "show_action"
+}

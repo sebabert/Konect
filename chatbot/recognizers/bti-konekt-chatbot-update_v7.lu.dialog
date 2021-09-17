@@ -1,0 +1,10 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_bti-konekt-chatbot-update_v7",
+  "recognizers": {
+    "en-us": "bti-konekt-chatbot-update_v7.en-us.lu",
+    "": "bti-konekt-chatbot-update_v7.en-us.lu",
+    "fr-fr": "bti-konekt-chatbot-update_v7.fr-fr.lu",
+    "fr": "bti-konekt-chatbot-update_v7.fr.lu"
+  }
+}

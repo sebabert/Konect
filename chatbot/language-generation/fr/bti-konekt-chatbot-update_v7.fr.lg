@@ -1,0 +1,9 @@
+[import](common.lg)
+
+# SendActivity_Welcome
+- ${WelcomeUser()}
+
+# SendActivity_QK7QK8()
+- ${IntroductionUser()}
+# SendActivity_QTEOw1()
+- I didn't understand your request !
